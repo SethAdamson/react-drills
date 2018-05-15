@@ -3,19 +3,34 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
+  constructor(){
+    super();
+    
+    this.state = {
+      desserts: ['Ice Cream', 'Cake', 'Cookies', 'Brownies', 'Pie', 'Donuts'],
+      userInput: ''
+    }
+    
   }
+
+updateData(val){
+  this.setState({userInput: val})
 }
 
-export default App;
+    render() {
+      let foodList = this.state.desserts.filter((elem, i) => {
+        return elem.includes(this.state.userInput);
+        }).map((elem, i) => {
+        return <h2 key={i}>{elem}</h2>
+      })
+      
+      return (
+        <div className="App">
+        <input onChange={(e)=> this.updateData(e.target.value) } />
+          {foodList}
+        </div>
+      );
+    }
+  }
+  
+  export default App;

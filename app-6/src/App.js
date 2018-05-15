@@ -25,6 +25,8 @@ updateTasks(){
 }
 
   render() {
+    console.log(this.state);
+    
     let taskArray = this.state.tasks.map((elem, i)=> {
       return (
         <ToDo key ={i} task ={elem} />
@@ -38,10 +40,10 @@ updateTasks(){
               placeholder = 'Enter New Task'
               onChange={(e)=> this.updateInput(e.target.value)} 
               />
-        <button onClick={()=> this.updateTasks} >Add</button>
+        <button onClick={()=> this.updateTasks()} >Add</button>
         </div>
         <br />
-        {taskArray}
+        {this.state.tasks}
       </div>
     );
   }
